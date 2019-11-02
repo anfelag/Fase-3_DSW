@@ -60,11 +60,10 @@
     <header class="masthead bg-primary text-white text-center colorPrimario">
       <div class="container">
         <img class="img-fluid mb-5 d-block mx-auto" src="img/profile.html" alt="">
-        <h1 class="text-uppercase mb-0">Eliminación</h1>
+        <h1 class="text-uppercase mb-0">ejemplo</h1>
         <hr >
         <h4 class="font-weight-light mb-0">
-           Eliminaremos Regitros de la tabla
-        </h4>
+            ACTIVIDAD 5 </h4>
       </div>
     </header>
 
@@ -73,30 +72,34 @@
         <div class="container">
             <div class="row">
               <div class="col-md-12 text-center">
-                <p class="cuerpo">
-                        Ya vimos en las secciones anteriores cómo crear una base de datos, registrar, consultar y actualizar registros en una tabla de MySQL. En esta última veremos cómo eliminar (borrar) registros que hay en la base de datos.</p>
-                    <p class="cuerpo">Echa un vistazo al siguiente ejemplo: </p>
-                    <hr>
-                    </br>
-            <div class="col-md-12">
-                </br>
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/KX39hYv9HhQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <br/>
-                <br/>
-                <P>Chacach. (30 de diciembre de 2015). Eliminar  Registros, Php &amp; Mysql. [Archivo de video]. Recuperado de: <a href="https://www.youtube.com/watch?time_continue=1&v=KX39hYv9HhQ">https://www.youtube.com/watch?time_continue=1&amp;v=KX39hYv9HhQ</a></P>
-                <br/>                
-		        <p align='justify'>El objetivo de este punto es el borrado de un registro de una tabla. Para ello, implementaremos un algoritmo que solicite ingresar el mail de un alumno y posteriormente efectúe su borrado.
-		            Para eliminar filas en una tabla debemos utilizar el comando SQL delete.
-		            La primera página es idéntica a la consulta, ya que debemos implementar un formulario que solicite la carga del mail del alumno:</p>
-		        <p><img src="img/eliminar1.png" alt="a" width="977" height="342"></p>
-		        <p align='justify'>Por otro lado tenemos el archivo "pagina2.php" que se encarga de buscar el mail ingresado en el formulario y en caso que exista se procede a borrarlo:</p>
-		        <p><img src="img/eliminar2.png" alt="a" width="980" height="532"></p>
-		        <p align='justify'>En esta segunda página efectuamos dos llamadas a la función mysqli_query, una para consultar si existe el mail ingresado y otra para efectuar el borrado del registro respectivo. Si no existe el mail ingresado mostramos un mensaje de tal situación.</p>		        
-            </div>
-                    </div>
+                    <p class="cuerpo">
+					<div class="pure-g">
+            <div class="pure-u-1-12">
+			<center>
+                
+                <form action="?action=<?php echo $alm->id > 0 ? 'actualizar' : 'registrar'; ?>" method="post" class="pure-form pure-form-stacked" style="margin-bottom:30px;">
+                  ACTIVIDAD 5 
+                </form>
+
+              </center>
             </div>
         </div>
+					</p>
+                    <hr>
+					<iframe id="actividadIF" src="//es.educaplay.com/es/recursoseducativos/2214919/html5/linux_apache_mysql_php.htm"width="100%" height="690" frameborder="0"></iframe>
+                    </br>
+                <div class="col-md-12">
+                  <p>Yepes, G. Y. Linux - Apache - MySQL – PHP. Recuperado  de: <a href="https://es.educaplay.com/recursos-educativos/2214919-linux_apache_mysql_php.html">https://es.educaplay.com/recursos-educativos/2214919-linux_apache_mysql_php.html</a> </p>
+                </div>
+              </div>
+                </div>
+            </div>
+        
+    </section>
 
+    <!-- About Section -->
+    <section class="" id="">
+     
     </section>
 
     <!-- Contact Section -->
