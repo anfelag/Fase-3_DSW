@@ -1,0 +1,34 @@
+.colorPrimario {
+    background-color: #005883;
+     color: white;
+}
+.base {
+    background-color: #ffffff;
+    color: #005883;
+}
+#navPrimario {
+    background-color: #005883;
+    color: white;
+}
+.img-nav {
+    height: 80px;
+    position: absolute;
+    margin-top: -5px;
+    margin-left: -15px;
+    padding-top: 1px;
+}
+.lead{
+    font-size:12px;
+}
+.img-footer {
+    height: 50%;
+}
+.footer_U{
+    padding:-30px;
+}
+.titulo {
+    color: #005883;
+}
+.cuerpo {
+    font-weight:bold;
+}
