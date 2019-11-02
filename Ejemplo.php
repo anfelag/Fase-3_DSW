@@ -1,4 +1,50 @@
-﻿<!DOCTYPE html>
+﻿<?php
+require_once 'alumno.entidad.php';
+require_once 'alumno.model.php';
+
+// Logica
+$alm = new Alumno();
+$model = new AlumnoModel();
+
+if(isset($_REQUEST['action']))
+{
+	switch($_REQUEST['action'])
+	{
+		case 'actualizar':
+			$alm->__SET('id',              $_REQUEST['id']);
+			$alm->__SET('Nombre',          $_REQUEST['Nombre']);
+			$alm->__SET('Apellido',        $_REQUEST['Apellido']);
+			$alm->__SET('Sexo',            $_REQUEST['Sexo']);
+			$alm->__SET('FechaNacimiento', $_REQUEST['FechaNacimiento']);
+
+			$model->Actualizar($alm);
+			header('Location: Ejemplo.php');
+			break;
+
+		case 'registrar':
+			$alm->__SET('Nombre',          $_REQUEST['Nombre']);
+			$alm->__SET('Apellido',        $_REQUEST['Apellido']);
+			$alm->__SET('Sexo',            $_REQUEST['Sexo']);
+			$alm->__SET('FechaNacimiento', $_REQUEST['FechaNacimiento']);
+
+			$model->Registrar($alm);
+			header('Location: Ejemplo.php');
+			break;
+
+		case 'eliminar':
+			$model->Eliminar($_REQUEST['id']);
+			header('Location: Ejemplo.php');
+			break;
+
+		case 'editar':
+			$alm = $model->Obtener($_REQUEST['id']);
+			break;
+	}
+}
+
+?>
+
+<!DOCTYPE html>
 <html lang="es">
 
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
@@ -60,10 +106,10 @@
     <header class="masthead bg-primary text-white text-center colorPrimario">
       <div class="container">
         <img class="img-fluid mb-5 d-block mx-auto" src="img/profile.html" alt="">
-        <h1 class="text-uppercase mb-0">Eliminación</h1>
+        <h1 class="text-uppercase mb-0">ejemplo</h1>
         <hr >
         <h4 class="font-weight-light mb-0">
-           Eliminaremos Regitros de la tabla
+            EJEMPLO DE PHP Y MYSQL. 
         </h4>
       </div>
     </header>
@@ -73,30 +119,88 @@
         <div class="container">
             <div class="row">
               <div class="col-md-12 text-center">
-                <p class="cuerpo">
-                        Ya vimos en las secciones anteriores cómo crear una base de datos, registrar, consultar y actualizar registros en una tabla de MySQL. En esta última veremos cómo eliminar (borrar) registros que hay en la base de datos.</p>
-                    <p class="cuerpo">Echa un vistazo al siguiente ejemplo: </p>
-                    <hr>
-                    </br>
-            <div class="col-md-12">
-                </br>
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/KX39hYv9HhQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <br/>
-                <br/>
-                <P>Chacach. (30 de diciembre de 2015). Eliminar  Registros, Php &amp; Mysql. [Archivo de video]. Recuperado de: <a href="https://www.youtube.com/watch?time_continue=1&v=KX39hYv9HhQ">https://www.youtube.com/watch?time_continue=1&amp;v=KX39hYv9HhQ</a></P>
-                <br/>                
-		        <p align='justify'>El objetivo de este punto es el borrado de un registro de una tabla. Para ello, implementaremos un algoritmo que solicite ingresar el mail de un alumno y posteriormente efectúe su borrado.
-		            Para eliminar filas en una tabla debemos utilizar el comando SQL delete.
-		            La primera página es idéntica a la consulta, ya que debemos implementar un formulario que solicite la carga del mail del alumno:</p>
-		        <p><img src="img/eliminar1.png" alt="a" width="977" height="342"></p>
-		        <p align='justify'>Por otro lado tenemos el archivo "pagina2.php" que se encarga de buscar el mail ingresado en el formulario y en caso que exista se procede a borrarlo:</p>
-		        <p><img src="img/eliminar2.png" alt="a" width="980" height="532"></p>
-		        <p align='justify'>En esta segunda página efectuamos dos llamadas a la función mysqli_query, una para consultar si existe el mail ingresado y otra para efectuar el borrado del registro respectivo. Si no existe el mail ingresado mostramos un mensaje de tal situación.</p>		        
-            </div>
-                    </div>
+                    <p class="cuerpo">
+					<div class="pure-g">
+            <div class="pure-u-1-12">
+			<center>
+                
+                <form action="?action=<?php echo $alm->id > 0 ? 'actualizar' : 'registrar'; ?>" method="post" class="pure-form pure-form-stacked" style="margin-bottom:30px;">
+                    <input type="hidden" name="id" value="<?php echo $alm->__GET('id'); ?>" />
+                    
+                    <table style="width:500px;">
+                        <tr>
+                            <th style="text-align:left;">Nombre</th>
+                            <td><input type="text" name="Nombre" value="<?php echo $alm->__GET('Nombre'); ?>" style="width:100%;" /></td>
+                        </tr>
+                        <tr>
+                            <th style="text-align:left;">Apellido</th>
+                            <td><input type="text" name="Apellido" value="<?php echo $alm->__GET('Apellido'); ?>" style="width:100%;" /></td>
+                        </tr>
+                        <tr>
+                            <th style="text-align:left;">Sexo</th>
+                            <td>
+                                <select name="Sexo" style="width:100%;">
+                                    <option value="1" <?php echo $alm->__GET('Sexo') == 1 ? 'selected' : ''; ?>>Masculino</option>
+                                    <option value="2" <?php echo $alm->__GET('Sexo') == 2 ? 'selected' : ''; ?>>Femenino</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="text-align:left;">Fecha</th>
+                            <td><input type="text" name="FechaNacimiento" value="<?php echo $alm->__GET('FechaNacimiento'); ?>" style="width:100%;" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" class="pure-button pure-button-primary">Guardar</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+                <table class="pure-table pure-table-horizontal">
+                    <thead>
+                        <tr>
+                            <th style="text-align:left;">Nombre</th>
+                            <th style="text-align:left;">Apellido</th>
+                            <th style="text-align:left;">Sexo</th>
+                            <th style="text-align:left;">Nacimiento</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <?php foreach($model->Listar() as $r): ?>
+                        <tr>
+                            <td><?php echo $r->__GET('Nombre'); ?></td>
+                            <td><?php echo $r->__GET('Apellido'); ?></td>
+                            <td><?php echo $r->__GET('Sexo') == 1 ? 'H' : 'F'; ?></td>
+                            <td><?php echo $r->__GET('FechaNacimiento'); ?></td>
+                            <td>
+                                <a href="?action=editar&id=<?php echo $r->id; ?>">Editar</a>
+                            </td>
+                            <td>
+                                <a href="?action=eliminar&id=<?php echo $r->id; ?>">Eliminar</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>     
+              </center>
             </div>
         </div>
+					</p>
+                    <hr>
+                    </br>
+                <div class="col-md-12">
+                        </br>
+                </div>
+              </div>
+                </div>
+            </div>
+        
+    </section>
 
+    <!-- About Section -->
+    <section class="" id="">
+     
     </section>
 
     <!-- Contact Section -->
